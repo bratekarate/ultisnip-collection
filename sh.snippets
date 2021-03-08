@@ -1,0 +1,88 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+global !p
+def find_cmd(e=False, p0=False):
+	cmd = 'find ${1:DIR} -type ${2:f} -name "*${3:.png}"'
+	if p0:
+		cmd += ' -print0'
+	if e:
+		cmd += ' -exec ${4:cmd} {} \\;'
+	return cmd
+
+
+def xargs_cmd(i=False, s0=False):
+	cmd = '| xargs'
+	if s0:
+		cmd += ' -0'
+	cmd2 = ' ${1:cmd}'
+	if i:
+		cmd += ' -I {}' + cmd2 + ' {}'
+	else:
+		cmd += cmd2
+	return cmd
+endglobal
+	
+snippet fin "find ... -name ..."
+`!p snip.rv = find_cmd()`
+endsnippet
+
+snippet fine "find ... -name ... -exec"
+`!p snip.rv = find_cmd(True)`
+endsnippet
+
+snippet fin0 "find ... -name ... -print0"
+`!p snip.rv = find_cmd(p0=True)`
+endsnippet
+
+snippet fine0 "find ... -name ... -exec ... -print0"
+`!p snip.rv = find_cmd(True, True)`
+endsnippet
+
+snippet xar " | xargs ..."
+`!p snip.rv = xargs_cmd()`
+endsnippet
+
+snippet xari " | xargs -I {} ... {}"
+`!p snip.rv = xargs_cmd(True)`
+endsnippet
+
+snippet xar0 " | xargs -0 ..."
+`!p snip.rv = xargs_cmd(s0=True)`
+endsnippet
+
+snippet xari0 " | xargs -I {} ... {}"
+`!p snip.rv = xargs_cmd(True, True)`
+endsnippet
+
+snippet ytspl
+python split.py -yt "${3:URL}" --album "${1:Album}" --artist "${2:Artist}"
+endsnippet
+
+snippet binsh "#!/bin/sh" b
+#!/bin/sh
+
+endsnippet
