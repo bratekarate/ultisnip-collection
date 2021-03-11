@@ -1,0 +1,36 @@
+snippet letter "Letter Template DIN 5008" b
+\documentclass[
+	fontsize=12pt,
+	parskip=full,
+	paper=A4,	
+	fromalign=right,
+	fromphone=true,
+	fromemail=true,
+	version=last,
+]{scrlttr2}
+\usepackage[utf8]{inputenc}
+\usepackage{eurosym}
+\DeclareUnicodeCharacter{20AC}{\euro}
+\usepackage[ngerman]{babel}
+\usepackage{pdfpages}
+\usepackage[hidelinks]{hyperref}
+\begin{document}
+\setkomavar{fromname}{${1:Sender name}}
+\setkomavar{fromaddress}{${2:Street Address}\\\\${3:Zip Code} ${4:City}}
+%\setkomavar{fromphone}{+49 123 456 7891}
+\setkomavar{fromemail}{\href{mailto:${5:mail}}{${5}}}
+\setkomavar{fromurl}[]{\href{http://absender.de}{absender.de}}
+\setkomavar{place}{${6:City}}
+\setkomavar{date}{\today}
+\setkomavar{subject}{${7:Betreff}}
+\begin{letter}{
+	${8:Recipient}\\\\
+	${9:Street address}\\\\
+	${10:Zip Code} ${11:City}
+}
+\opening{Sehr geehrte Damen und Herren,}
+${12:Text}
+\closing{Mit freundlichen Grüßen}
+\end{letter}
+\end{document}
+endsnippet
