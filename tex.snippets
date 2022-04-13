@@ -8,6 +8,7 @@ snippet letter "Letter Template DIN 5008" b
 	fromemail=true,
 	version=last,
 ]{scrlttr2}
+\renewcommand*{\raggedsignature}{\raggedright}
 \usepackage[utf8]{inputenc}
 \usepackage{eurosym}
 \DeclareUnicodeCharacter{20AC}{\euro}
@@ -17,7 +18,7 @@ snippet letter "Letter Template DIN 5008" b
 \begin{document}
 \setkomavar{fromname}{${1:Sender name}}
 \setkomavar{fromaddress}{${2:Street Address}\\\\${3:Zip Code} ${4:City}}
-%\setkomavar{fromphone}{+49 123 456 7891}
+%\setkomavar{fromphone}{+49 123 4567891}
 \setkomavar{fromemail}{\href{mailto:${5:mail}}{${5}}}
 \setkomavar{fromurl}[]{\href{http://absender.de}{absender.de}}
 \setkomavar{place}{${6:City}}
