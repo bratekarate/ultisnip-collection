@@ -18,19 +18,21 @@ snippet letter "Letter Template DIN 5008" b
 \begin{document}
 \setkomavar{fromname}{${1:Sender name}}
 \setkomavar{fromaddress}{${2:Street Address}\\\\${3:Zip Code} ${4:City}}
-%\setkomavar{fromphone}{+49 123 4567891}
-\setkomavar{fromemail}{\href{mailto:${5:mail}}{${5}}}
+\setkomavar{fromphone}{${5:+49 123 4567891}}
+\setkomavar{fromemail}{\href{mailto:${6:mail}}{${6}}}
 \setkomavar{fromurl}[]{\href{http://absender.de}{absender.de}}
-\setkomavar{place}{${6:City}}
+\setkomavar{place}{${7:City}}
 \setkomavar{date}{\today}
-\setkomavar{subject}{${7:Betreff}}
+\setkomavar{subject}{${8:Betreff}}
+\addtokomafont{addressee}{\small}
+\addtokomafont{fromaddress}{\small}
 \begin{letter}{
-	${8:Recipient}\\\\
-	${9:Street address}\\\\
-	${10:Zip Code} ${11:City}
+	${9:Recipient}\\\\
+	${10:Street address}\\\\
+	${11:Zip Code} ${12:City}
 }
 \opening{Sehr geehrte Damen und Herren,}
-${12:Text}
+${13:Text}
 \closing{Mit freundlichen Grüßen}
 \end{letter}
 \end{document}
