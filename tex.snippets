@@ -16,12 +16,12 @@ snippet letter "Letter Template DIN 5008" b
 \usepackage{pdfpages}
 \usepackage[hidelinks]{hyperref}
 \begin{document}
-\setkomavar{fromname}{${1:Sender name}}
-\setkomavar{fromaddress}{${2:Street Address}\\\\${3:Zip Code} ${4:City}}
-\setkomavar{fromphone}{${5:+49 123 4567891}}
-\setkomavar{fromemail}{\href{mailto:${6:mail}}{${6}}}
-\setkomavar{fromurl}[]{\href{http://absender.de}{absender.de}}
-\setkomavar{place}{${7:City}}
+\setkomavar{fromname}{`!v $PERSONAL_FROM_NAME ?? "${1:Sender name}"`}
+\setkomavar{fromaddress}{`!v $PERSONAL_STREET_ADDRESS ?? "${2:Street Address}"`\\\\ `!v $PERSONAL_ZIP_CODE ?? "${3:Zip Code}"` `!v $PERSONAL_CITY ?? "${4:City}"`}
+\setkomavar{fromphone}{`!v $PERSONAL_PHONE_NUMBER ?? "${5:+49 123 4567891}"`}
+\setkomavar{fromemail}{\href{mailto:`!v $PERSONAL_EMAIL_ADDRESS ?? "${6:mail}"`}{`!v $PERSONAL_EMAIL_ADDRESS ?? "${6}"`}}
+`!v 1 ? "\\setkomavar{fromurl}[]{\\href{https://absender.de}}{absender.de}" : "\\setkomavar{fromurl}[]{\\href{https://" . ($PERSONAL_HOME_PAGE ?? "${7:absender.de}") . "}{" . ($PERSONAL_HOME_PAGE ?? "${7}") . "}"`
+\setkomavar{place}{`!v $PERSONAL_CITY ?? "${4}"`}
 \setkomavar{date}{\today}
 \setkomavar{subject}{${8:Betreff}}
 \addtokomafont{addressee}{\small}
@@ -31,8 +31,8 @@ snippet letter "Letter Template DIN 5008" b
 	${10:Street address}\\\\
 	${11:Zip Code} ${12:City}
 }
-\opening{Sehr geehrte Damen und Herren,}
-${13:Text}
+\opening{${13:Sehr geehrte}${14} ${15:Damen und Herren},}
+${16:Text}
 \closing{Mit freundlichen Grüßen}
 \end{letter}
 \end{document}
