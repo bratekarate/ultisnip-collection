@@ -1,13 +1,13 @@
 snippet letter "Letter Template DIN 5008" b
 \documentclass[
-	fontsize=12pt,
-	parskip=full,
-	paper=A4,	
-	fromalign=right,
-	fromphone=true,
-	fromemail=true,
-	firstfoot=false, % Disable footer to enforce bottom margin.
-	version=last,
+  fontsize=11pt,
+  parskip=full,
+  paper=A4,	
+  fromalign=right,
+  fromphone=true,
+  fromemail=true,
+  firstfoot=false, % Disable footer to enforce bottom margin.
+  version=last,
 ]{scrlttr2}
 \renewcommand*{\raggedsignature}{\raggedright}
 \usepackage[utf8]{inputenc}
@@ -23,13 +23,13 @@ snippet letter "Letter Template DIN 5008" b
 \geometry{a4paper,left=\hmargin,right=\hmargin,bottom=\vmargin,top=\vmargin,marginparsep=0cm,marginparwidth=0cm}
 \KOMAoptions{addrfield=topaligned}
 \renewcommand*{\raggedsignature}{\raggedright}
-\setplength{sigbeforevskip}{1.5cm}% needs version 3.26 or newer
-\setplength{toaddrhpos}{\hmargin}% needs version 3.26 or newer
-% TODO: put firsthead contents into location box instead of hacking the layout.
-\setplength{firstheadhpos}{-\hmargin}% needs version 3.26 or newer
-\setplength{firstheadvpos}{4.75cm}% needs version 3.26 or newer
-% This aligns toaddr with firsthead, but not the text contents:
-%\setplength{firstheadvpos}{\useplength{toaddrvpos}}% needs version 3.26 or newer
+\setplength{sigbeforevskip}{1.5cm} % spacing before signature
+\setplength{toaddrhpos}{\hmargin} % toaddress margin same as content.
+\setplength{firstheadhpos}{-\hmargin} % if right aligned fromaddress
+%\setplength{firstheadhpos}{\hmargin} % if left aligned fromaddress
+\setplength{firstheadvpos}{\vmargin} % top margin
+%\setplength{firstheadvpos}{4.77cm} % same height as addressee
+%\setplength{firstheadvpos}{\useplength{toaddrvpos}} % align fromaddess with toaddress, but not the contents.
 \addtokomafont{addressee}{\small}
 \addtokomafont{fromaddress}{\small}
 \addtokomafont{fromname}{\small}
