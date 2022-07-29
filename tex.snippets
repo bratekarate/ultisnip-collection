@@ -36,14 +36,14 @@ snippet letter "Letter Template DIN 5008" b
 \setkomavar{specialmail}{\mbox{}}
 
 \begin{document}
-\setkomavar{fromname}{${1:`!v $PERSONAL_FROM_NAME ? $PERSONAL_FROM_NAME : "Sender name"`}}
+\setkomavar{fromname}{${1:`!v !empty($PERSONAL_FROM_NAME) ? $PERSONAL_FROM_NAME : "Sender name"`}}
 \setkomavar{fromaddress}{%
-	${2:`!v $PERSONAL_STREET_ADDRESS ? $PERSONAL_STREET_ADDRESS : "Street Address"`}\\\\
-	${3:`!v $PERSONAL_ZIP_CODE ? $PERSONAL_ZIP_CODE : "Zip Code"`} ${4:`!v $PERSONAL_CITY ? $PERSONAL_CITY : "City"`}}
-\setkomavar{fromphone}{${5:`!v $PERSONAL_PHONE_NUMBER ? $PERSONAL_PHONE_NUMBER : "+49 123 4567891"`}}
-\setkomavar{fromemail}{\href{mailto:${6:`!v $PERSONAL_EMAIL_ADDRESS ? $PERSONAL_EMAIL_ADDRESS : "mail"`}}{$6}
+	${2:`!v !empty($PERSONAL_STREET_ADDRESS) ? $PERSONAL_STREET_ADDRESS : "Street Address"`}\\\\
+	${3:`!v !empty($PERSONAL_ZIP_CODE) ? $PERSONAL_ZIP_CODE : "Zip Code"`} ${4:`!v !empty($PERSONAL_CITY) ? $PERSONAL_CITY : "City"`}}
+\setkomavar{fromphone}{${5:`!v !empty($PERSONAL_PHONE_NUMBER) ? $PERSONAL_PHONE_NUMBER : "+49 123 4567891"`}}
+\setkomavar{fromemail}{\href{mailto:${6:`!v !empty($PERSONAL_EMAIL_ADDRESS) ? $PERSONAL_EMAIL_ADDRESS : "mail"`}}{$6}
 }
-\setkomavar{fromurl}[]{\href{https://${7:`!v $PERSONAL_HOME_PAGE ? $PERSONAL_HOME_PAGE : "absender.de"`}}{$7}}
+\setkomavar{fromurl}[]{\href{https://${7:`!v !empty($PERSONAL_HOME_PAGE) ? $PERSONAL_HOME_PAGE : "absender.de"`}}{$7}}
 \setkomavar{place}{$4}
 \setkomavar{date}{\today}
 \setkomavar{subject}{${8:Betreff}}
